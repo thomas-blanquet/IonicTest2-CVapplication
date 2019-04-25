@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./experiences.page.scss'],
 })
 export class ExperiencesPage implements OnInit {
-  experiences:any[];
   currentUser:string;
 
   constructor(private router: Router, private authService: AuthenticationService, private storage: Storage) { }
@@ -20,16 +19,6 @@ export class ExperiencesPage implements OnInit {
     .then((val) => {
       if (val !== null) {
         this.currentUser = val;
-        this.storage.get(val).then(user => {
-          if (user !== null) {
-            let parsedUser = JSON.parse(user);
-            if (parsedUser.experiences !== undefined) {
-              this.experiences = parsedUser.experiences;
-            } else {
-              this.experiences = [];
-            }
-          }
-        });
       } else {
         this.router.navigateByUrl('/public/login');
       };

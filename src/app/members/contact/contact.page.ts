@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 
 export class ContactPage implements OnInit {
-  contact:string[];
   currentUser:string;
 
   constructor(private router: Router, private authService: AuthenticationService, private storage: Storage) { }

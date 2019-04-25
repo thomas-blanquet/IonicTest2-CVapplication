@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./formation.page.scss'],
 })
 export class FormationPage implements OnInit {
-  formation:any[];
   currentUser:string;
 
   constructor(private router: Router, private authService: AuthenticationService, private storage: Storage) { }
@@ -20,16 +19,6 @@ export class FormationPage implements OnInit {
     .then((val) => {
       if (val !== null) {
         this.currentUser = val;
-        this.storage.get(val).then(user => {
-          if (user !== null) {
-            let parsedUser = JSON.parse(user);
-            if (parsedUser.formation !== undefined) {
-              this.formation = parsedUser.formation;
-            } else {
-              this.formation = [];
-            }
-          }
-        });
       } else {
         this.router.navigateByUrl('/public/login');
       };
